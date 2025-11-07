@@ -1,17 +1,13 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import ServiceGrid from './components/ServiceGrid'
-import HowItWorks from './components/HowItWorks'
+import DesignNavbar from './components/DesignNavbar'
+import PalettePreview from './components/PalettePreview'
 import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
-      <Navbar />
+    <div className="min-h-screen" style={{ backgroundColor: '#FFF9FB', color: '#2D3748' }}>
+      <DesignNavbar />
       <main>
-        <Hero />
-        <ServiceGrid />
-        <HowItWorks />
+        <PalettePreview />
       </main>
       <Footer />
     </div>
