@@ -1,6 +1,7 @@
 import React from 'react'
-import { Star, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { Button, palette } from './Button'
+import StarRating from './StarRating'
 
 export function CardMaster({
   name,
@@ -10,6 +11,7 @@ export function CardMaster({
   distance = '1.2 км',
   avatar,
   tags = [],
+  shortInfo = '',
   onBook,
 }) {
   return (
@@ -21,25 +23,33 @@ export function CardMaster({
           ) : null}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between">
-            <div>
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0">
               <div className="truncate text-base font-semibold" style={{ color: palette.text }}>{name}</div>
               <div className="truncate text-sm text-gray-500">{role}</div>
             </div>
-            <div className="ml-3 inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-1 text-xs text-amber-700">
-              <Star size={14} className="text-amber-500" fill="#f59e0b" />
-              <span>{rating}</span>
+            <div className="ml-3 inline-flex items-center gap-2 rounded-full bg-amber-50 px-2 py-1 text-xs text-amber-700">
+              <StarRating value={rating} size={14} />
               <span className="text-gray-400">({reviews})</span>
             </div>
           </div>
+
+          {shortInfo ? (
+            <p className="mt-2 line-clamp-2 text-sm text-gray-700">{shortInfo}</p>
+          ) : null}
+
           <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
             <span className="inline-flex items-center gap-1 text-gray-500"><MapPin size={14} />{distance}</span>
-            {tags.slice(0,3).map((t) => (
+            {tags.slice(0, 3).map((t) => (
               <span key={t} className="rounded-full bg-pink-50 px-2 py-1 text-pink-700">{t}</span>
             ))}
+            {tags.length > 3 ? (
+              <span className="rounded-full bg-gray-50 px-2 py-1 text-gray-600">+{tags.length - 3}</span>
+            ) : null}
           </div>
+
           <div className="mt-3">
-            <Button variant="secondary" onClick={onBook}>Забронировать</Button>
+            <Button variant="secondary" onClick={onBook}>Записаться</Button>
           </div>
         </div>
       </div>
