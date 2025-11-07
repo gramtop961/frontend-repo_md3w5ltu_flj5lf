@@ -1,16 +1,25 @@
-import DesignNavbar from './components/DesignNavbar'
-import PalettePreview from './components/PalettePreview'
-import Footer from './components/Footer'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './components/Home'
+import SearchPage from './components/SearchPage'
+import MasterProfile from './components/MasterProfile'
+import UserDashboard from './components/UserDashboard'
+import Booking from './components/Booking'
 
 function App() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#FFF9FB', color: '#2D3748' }}>
-      <DesignNavbar />
-      <main>
-        <PalettePreview />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/master/:id" element={<MasterProfile />} />
+          <Route path="/account" element={<UserDashboard />} />
+          <Route path="/booking/:id" element={<Booking />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   )
 }
 
